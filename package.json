@@ -1,0 +1,19 @@
+{
+  "name": "image-classification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html"
+  },
+  "keywords": [],
+  "author": "Mateja Petrovic <mateja176@gmail.com> (https://github.com/mateja176)",
+  "license": "ISC",
+  "dependencies": {
+    "@tensorflow-models/mobilenet": "^1.0.1",
+    "@tensorflow/tfjs": "^1.2.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.5.2"
+  }
+}
