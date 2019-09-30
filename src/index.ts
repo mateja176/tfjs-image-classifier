@@ -1,19 +1,26 @@
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as tf from '@tensorflow/tfjs';
 
-const img = document.querySelector('img');
-const webcam = document.getElementById('webcam') as HTMLVideoElement;
+const images = Array.from(
+  document.querySelectorAll('img'),
+) as HTMLImageElement[];
 
 const imageClassificationApp = async () => {
   const net = await mobilenet.load();
 
-  const result = await net.classify(img);
-
-  console.log(result);
+  images.forEach((image, i) => {
+    net.classify(image).then(result => {
+      console.log(i, ':', result);
+    });
+  });
 };
 
-const setupWebcam = async () => {
-  return new Promise((resolve, reject) => {
+imageClassificationApp();
+
+const webcam = document.getElementById('webcam') as HTMLVideoElement;
+
+const setupWebcam = async () =>
+  new Promise((resolve, reject) => {
     navigator.getUserMedia(
       { video: true },
       stream => {
@@ -23,7 +30,6 @@ const setupWebcam = async () => {
       error => reject(error.message),
     );
   });
-};
 
 const webcamImageClassificationApp = async () => {
   const net = await mobilenet.load();
